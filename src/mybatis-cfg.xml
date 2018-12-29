@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases> <!-- 起别名，在daoxml文件中可以直接引用起好的别名 -->
+		<typeAlias type="com.iss.bean.address" alias="add"/>
+		<typeAlias type="com.iss.bean.User" alias="us"/>	
+		<typeAlias type="com.iss.bean.did" alias="dd"/>
+		<typeAlias type="com.iss.bean.recover" alias="rec"/>	
+		<typeAlias type="com.iss.bean.didrecord" alias="drd"/>	
+		<typeAlias type="com.iss.bean.Listshow" alias="lts"/>				
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="com/iss/dao/UserDaoMapper.xml"/>	
+		<mapper resource="com/iss/dao/ReuserDaoMapper.xml"/>	
+		
+	</mappers>
+</configuration>

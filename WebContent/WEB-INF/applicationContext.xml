@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:websocket="http://www.springframework.org/schema/websocket"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd 
+  	http://www.springframework.org/schema/websocket   
+  	http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+  	 
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+    <!--   <property name="jdbcUrl" value="jdbc:mysql://sqld.duapp.com:4050/TjbOLswAbJOwYrBdeGHF"/>
+		<property name="user" value="daa9bc166c3048d0847fd3d9a8cea1b7"/>
+		<property name="password" value="7eec0210bb2d433f80bc38dca072ef26"/>   -->    
+ <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/o2oresource"/>
+		<property name="user" value="root"/>
+		<property name="password" value="159951"/>    
+		<property name="maxPoolSize" value="40"/> 
+		<property name="minPoolSize" value="1"/>
+		<property name="initialPoolSize" value="1"/>
+		<property name="maxIdleTime" value="20"/>
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />  
+		<property name="configLocation" value="classpath:mybatis-cfg.xml"/>  
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">   
+	<property name="basePackage" value="com.iss.dao"/>   
+	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+	 
+  
+</beans>

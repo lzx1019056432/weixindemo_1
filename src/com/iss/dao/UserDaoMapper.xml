@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iss.dao.UserDao">
+<!-- 任务一 -->
+	<select id="ListAddress" resultType="add" parameterType="int">
+	select * from u_address where add_uid=#{0}
+	</select>	
+<!-- 任务二 -->	
+	<update id="ReviseAddress" parameterType="add">
+	update u_address set lng=#{lng},lat=#{lat},name=#{name},appname=#{appname},address=#{address},phonenumber=#{phonenumber},detailaddress=#{detailaddress} where aid=#{aid};
+	</update>
+<!-- 任务三 -->		
+    <delete id="DeleteAddress" parameterType="add">
+    delete from u_address where aid=#{0}
+    </delete>
+ <!-- 任务四 -->	
+    <insert id="SupAddress" parameterType="add">
+    insert into u_address (aid,add_uid,lng,lat,detailaddress,name,appname,address,phonenumber) values(DEFAULT,#{add_uid},#{lng},#{lat},#{detailaddress},#{name},#{appname},#{address},#{phonenumber});
+    </insert>
+<!-- 任务五 -->	
+    <select id="ListDid" resultType="drd" parameterType="int">
+	SELECT * from did,con_cd,d_user WHERE did=c_did and d_uid=reuid and uid=#{0}
+	</select>
+<!-- 任务六 -->	
+	<insert id="SendDid" parameterType="dd">
+    insert into did (did,uid,aid,didnum,didtime,didmoney,content,state) values(DEFAULT,#{uid},#{aid},#{didnum},#{didtime},#{didmoney},#{content},#{state});
+    </insert>
+<!-- 任务七 -->	
+	<update id="ReviseDid" parameterType="int">
+	update did set state=#{0} where did=#{1};
+	</update>
+<!-- 任务八 -->	
+    <select id="CollectMoney" resultType="java.lang.String" parameterType="int">
+	select SUM(didmoney) as money from did where uid=#{0}
+	</select>
+<!-- 任务九 -->	
+    <select id="MoneyDetail" resultType="dd" parameterType="int">
+	select * from did where uid=#{0}
+	</select>
+<!-- 任务十 -->	
+	<update id="AddMoney" parameterType="int">
+	update did set money=#{0} where did=#{1};
+	</update>
+<!-- 任务九 -->	
+    <select id="oneAddress" resultType="add" parameterType="int">
+	select * from u_address where aid=#{0}
+	</select>
+<!-- 微信确认-->	
+    <select id="checkuser" resultType="us">
+	select * from user where openid=#{0}
+	</select>
+<!-- 插入新用户 -->	
+	<insert id="InsertUser" parameterType="String">
+    insert into user (uid,openid) values(DEFAULT,#{0});
+    </insert>
+
+
+
+
+
+    
+</mapper>

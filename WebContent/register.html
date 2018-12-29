@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">回收员注册</h1>
+		</header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script> 
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init(); 
+    $(document).ready(function(){
+    	$("#checkbtn").click(function(){  
+         
+    	if($.trim($("#name").val()).length>=1 ||$.trim($("#photonum").val()).length>=11){	
+    	 	mui.alert("请耐心等待管理员审核","提交成功","确定",function(){
+	$("form").submit();
+    	});
+    	
+ 
+    	}else{
+    			mui.alert("请完善你的信息再做提交","提示","确定",function(){
+      		 
+      	});
+    	}	
+    	});
+    });
+    </script>
+</head>
+ 
+<body>
+	<div id="html_1">
+<form class="mui-input-group" style="margin-top: 50px;" name="form1" action="Sendreuserifo.do">
+    <div class="mui-input-row">
+        <label>姓名</label>
+    <input type="text" class="" placeholder="真实姓名" id="name" name="name">
+    </div>    
+    <div class="mui-input-row">
+        <label>电话</label>
+        <input type="number" class="" placeholder="手机号码" id="photonum" name="photonum">
+    </div>
+    <input type="hidden" name="u_openid" value="">
+
+</form>
+<div style="margin-top: 15px;" class="mui-text-center">
+	    	<button type="button" class="mui-btn mui-btn-success" style="width: 80%; height: 45px;" id="checkbtn">确定</button>
+
+</div>
+</div>
+</body>
+</html>

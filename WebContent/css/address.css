@@ -1,0 +1,25 @@
+  .selectsex2{
+    	 
+    	background-color:#4CD964;
+    	
+    }
+    .hiddenhtml{
+    	display: none;
+    }
+    .addressli{
+    margin-left: 10px;
+    height: 60px;
+    border-bottom: 
+    1px solid #f9f9f9; 
+    padding-top: 10px;
+    }
+    .addressli1{
+    	cursor: pointer;
+    margin-left: 10px;
+    }
+   .addressli2{
+   	color:#A6A6A6;
+   	margin-left: 10px; 
+   	font-size: 12px; 
+   }
+    		
