@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iss.dao.ReuserDao">
+<!-- 任务二 :匹配接收订单的回收员-->
+	<select id="selectreuser" resultType="rec">
+	SELECT  
+   *,
+      min( ROUND(  
+        6378.138 * 2 * ASIN(  
+            SQRT(  
+                POW(  
+                    SIN(  
+                        (  
+                            #{0} * PI() / 180 - lat * PI() / 180  
+                        ) / 2  
+                    ),  
+                    2  
+                ) + COS(#{1} * PI() / 180) * COS(lat * PI() / 180) * POW(  
+                    SIN(  
+                        (  
+                           #{0} * PI() / 180 - lng * PI() / 180  
+                        ) / 2  
+                    ),  
+                    2  
+                )  
+            )  
+        ) * 1000  
+    )) as distance
+FROM  
+   d_user
+	</select>	
+<!-- 任务三 :匹配接收订单的回收员-->
+	<select id="selectlatlng" resultType="add"> 
+select * from u_address where aid=#{0}
+
+
+</select>
+<!-- 任务四 :匹配接收订单的回收员-->
+	<insert id="insertdid" parameterType="int"> 
+ insert into con_cd (cid,c_did,d_uid) values(DEFAULT,#{0},#{1});
+
+
+</insert>
+<!-- 任务五 :匹配接收订单的回收员-->
+	<select id="selectdid" resultType="java.lang.Integer"> 
+ select did from did where didnum = #{0};
+
+</select>
+ <!-- 任务六 :查找回收员是否在数据库里-->
+	<select id="selectrec" resultType="rec"> 
+ select * from  d_user where u_openid = #{0};
+
+</select>  
+<!-- 任务七 :提交回收员申请信息-->
+	<insert id="insertreuserinfo" parameterType="rec"> 
+ insert into d_user (reuid,name,photonum,u_openid,state) values(DEFAULT,#{name},#{photonum},#{u_openid},DEFAULT);
+
+
+</insert> 
+<!-- 任务八 :更新回收员地址信息-->
+	<update id="reuseraddressbyadmin" parameterType="rec"> 
+	update d_user set lng=#{lng},lat=#{lat}where reuid=#{reuid};
+
+
+</update> 
+<!-- 任务九 :更新回收员状态-->
+	<update id="rechangestate" parameterType="int"> 
+	update d_user set state=#{0} where reuid=#{1};
+
+
+</update> 
+ <!-- 任务十 :查看所有订单-->
+	<select id="showalllist" resultType="lts"> 
+select * from con_cd,did,d_user where did.did = con_cd.c_did and d_uid = d_user.reuid and did.state=1; 
+
+</select>  
+ <!-- 任务十一 :查看所有回收员state=0-->
+	<select id="showallreuser" resultType="rec"> 
+ select * from d_user WHERE state = 0
+</select> 
+ <!-- 任务十二 :查看所有回收员state=1-->
+	<select id="showallreuser1" resultType="rec"> 
+ select * from d_user WHERE state = 1
+</select>  
+ <!-- 任务十三 :查看one订单-->
+	<select id="showonelist" resultType="drd"> 
+SELECT * from con_cd,did where con_cd.d_uid=#{0} and con_cd.c_did = did.did 
+
+</select> 
+<!-- 任务十四 :输入金额完成提交-->
+	<update id="didsuccess"> 
+	update did set state=#{2},didmoney=#{1} where did=#{0};
+</update> 
+ <!-- 任务十五 :回收员支出总金额-->
+	<select id="reuseroutall" resultType="java.lang.String"> 
+select SUM(didmoney) as money from did,con_cd,d_user where did = con_cd.c_did and con_cd.d_uid = #{0} and con_cd.d_uid = d_user.reuid
+</select> 
+ <!-- 任务十六 :查看回收员支出state=1-->
+	<select id="reuserouts" resultType="dd"> 
+select * from did,con_cd,d_user where did = con_cd.c_did and con_cd.d_uid = #{0} and con_cd.d_uid = d_user.reuid and did.state=1;
+
+</select> 
+ <!-- 任务十六 :查看回收员支出state=1-->
+	<select id="showuseropenid" resultType="java.lang.String"> 
+select openid from did,`user` where `user`.uid = did.uid and did.did =#{0}
+
+</select> 
+</mapper>

@@ -4,8 +4,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-import com.sun.javafx.image.ByteToBytePixelConverter;
+/*import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+import com.sun.javafx.image.ByteToBytePixelConverter;*/
 
 public class SignUtil {
 	/*

@@ -19,7 +19,7 @@ import com.iss.message.resp.NewsMessage;
 import com.iss.message.resp.TextMessage;
 import com.iss.message.resp.VideoMessage;
 import com.iss.message.resp.VoiceMessage;
-import com.sun.org.apache.xml.internal.resolver.readers.SAXCatalogReader;
+/*import com.sun.org.apache.xml.internal.resolver.readers.SAXCatalogReader;*/
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
