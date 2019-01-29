@@ -126,7 +126,7 @@
 							<td>${lit.lat}</td> 
 							<td>${lit.photonum}</td>
 						<td class="td-status"><span class="label label-success radius">已审核</span></td>
-						<td class="td-manage">  <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						<td class="td-manage">  <a title="删除" href="javascript:;" onclick="member_del(this,'${lit.reuid}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -180,7 +180,18 @@ function member_huanyuan(obj,id){
 function member_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$(obj).parents("tr").remove();
+	    $.post("deluserinfo.do",
+	    	    {
+	    	      reuid:id
+	    	       
+	    	    },
+	    	    function(result){
+	    	      if(result=="success")
+
 		layer.msg('已删除!',{icon:1,time:1000});
+	    	      else
+	    	    	  alert("删除失败");
+	    	    }); 
 	});
 }
 </script>

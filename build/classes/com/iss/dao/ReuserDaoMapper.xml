@@ -106,4 +106,7 @@ select * from did,con_cd,d_user where did = con_cd.c_did and con_cd.d_uid = #{0}
 select openid from did,`user` where `user`.uid = did.uid and did.did =#{0}
 
 </select> 
+<delete id="delreuserinfo">  
+delete from d_user where reuid =#{0}
+</delete>
 </mapper>

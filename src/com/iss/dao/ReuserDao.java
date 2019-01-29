@@ -44,4 +44,6 @@ public interface ReuserDao {
 	public List<recover>  showallreuser1(); 
 	//18.获取订单所属用户，用户回复模板消息
 	public String  showuseropenid(int did); 
+	//19.管理员删除回收员信息/已审核和未审核的
+	public int delreuserinfo(int reuid);
 }

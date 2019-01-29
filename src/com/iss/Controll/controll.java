@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.iss.bean.Listshow;
@@ -401,6 +402,18 @@ public class controll {
 			reuserdao.rechangestate(1, reuid);
 			System.out.println("successchangestate");
 			return " ";
+			
+	}
+////////---回收员state修改
+		@RequestMapping("deluserinfo")
+		@ResponseBody
+		public String test18(ModelMap mp,int reuid){	
+			int flag = reuserdao.delreuserinfo(reuid);
+			System.out.println("return"+flag);
+			if(flag==1)	
+			return "success";
+			else
+			return "false";
 			
 	}
 }
